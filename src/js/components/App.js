@@ -1,18 +1,33 @@
 import React from "react";
+import { connect } from 'react-redux';
 import List from "./List";
 import Form from "./Form";
 
-const App = () => {
+const App = (props) => {
+  console.log('ARTICLE: ', props.articles)
+  return (
     <div className="row mt-5">
         <div className="col-md-4 offset-md-1">
             <h2>Articles</h2>
-            <List />
+            <List 
+              articles={props.articles}
+            />
         </div>
         <div className="col-md-4 offset-md-1">
             <h2> Add a new article</h2>
-            <Form />
+            <Form 
+              formData={props.addArticleForm}
+            />
         </div>
     </div>
+  )
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    articles: state.articles,
+    addArticleForm: state.addArticleForm,
+  }
+}
+
+export default connect(mapStateToProps)(App);

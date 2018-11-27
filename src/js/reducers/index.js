@@ -1,13 +1,17 @@
 import { ADD_ARTICLE } from "../constants/action-types";
-const initialState = {
-  articles: []
-};
-const rootReducer = (state = initialState, action) => {
+import initialState from './initialState';
+
+const articlesReducer = (state = initialState.articles, action) => {
   switch (action.type) {
     case ADD_ARTICLE:
-      return { ...state, articles: [...state.articles, action.payload] };
+      console.log("PAYLOAD ", action.formData)
+      return [...state, action.formData]
+      // return { ...state, [...state, action.payload] };
+     //  return Object.assign([], state, [state].push(action.formData))
+      // return Object.assign([], state, [...state].push(action.formData))
+      // return [...state].push(action.payload)
     default:
       return state;
   }
 };
-export default rootReducer;
+export default articlesReducer;

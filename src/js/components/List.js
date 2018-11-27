@@ -1,20 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
+import uuidv1 from "uuid"
 
-const mapStateToProps = state => {
-    return { articles: state.articles };
-};
+const renderArticles = articles => articles.map(article => {
+  return (
+    <li
+      className='list-group-item'
+      key={uuidv1()}
+      >
+        {article.title}
+      </li>
+  )
+})
 
-const ConnectedList = ({ articles }) => (
-    <ul classNmae="list-group list-group-flush">
-    {articles.map(el => (
-        <li className="list-group-item" key={el.id}>
-            {el.title}
-        </li>
-    ))}
+const List = ({ articles }) => (
+    <ul className="list-group list-group-flush">
+    {/* {console.log(articles)} */}
+      {renderArticles(articles)}
     </ul>
 );
-
-const List = connect(mapStateToProps)(ConnectedList);
 
 export default List;

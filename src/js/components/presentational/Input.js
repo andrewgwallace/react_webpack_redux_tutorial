@@ -6,7 +6,7 @@ const Input = ({ label, text, type, id, value, handleChange }) => (
    <label htmlFor={label}>{text}</label>
    <input
     type={type}
-    classNmae="form-control"
+    className="form-control"
     id={id}
     value={value}
     onChange={handleChange}

@@ -1,51 +1,58 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
 import uuidv1 from "uuid";
-import { addArticle } from "../actions/index";
-const mapDispatchToProps = dispatch => {
-  return {
-    addArticle: article => dispatch(addArticle(article))
-  };
-};
-class ConnectedForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      title: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+import * as formActions from "../actions/index";
+
+// reducer will take this data as the payload for the action
+// switch on the name of the input that was updated
+// update the props with the new value
+// app js will update form with new form data
+
+const Form = (props) => {
+  
+  const handleChange = (event) => {
+    const data = {
+      name: event.target.name,
+      value: event.target.value
+    }
+    props.formActions.updateForm(data)
   }
-  handleChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
-  }
-  handleSubmit(event) {
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { title } = this.state;
-    const id = uuidv1();
-    this.props.addArticle({ title, id });
-    this.setState({ title: "" });
+    props.formActions.addArticle(props.formData)
+    props.formActions.clearForm()
   }
-  render() {
-    const { title } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit}>
+
+  console.log("PROPS: ", props)
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
-            type="text"
-            className="form-control"
-            id="title"
-            value={title}
-            onChange={this.handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-success btn-lg">
-          SAVE
-        </button>
+              type="text"
+              className="form-control"
+              name="title"
+              value={props.formData.title}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-success btn-lg">
+            SAVE
+          </button>
       </form>
-    );
-  }
+    </div>
+  )
 }
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
-export default Form;
+
+const mapDispatchToProps = dispatch => ({
+  formActions: bindActionCreators(formActions, dispatch)
+})
+
+const mapStateToProps = state => ({
+  formData: state.addArticleForm,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -1,6 +1,17 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE, UPDATE_FORM } from "../constants/action-types";
 
-export const addArticle = article => ({
+export const addArticle = formData => {
+  console.log("FORM DATA ", formData)  
+  return {
     type: ADD_ARTICLE,
-    payload: article
+    formData
+  }
+}
+
+export const updateForm = data => ({
+  type: UPDATE_FORM,
+  data,
 })
+
+
+export const clearForm = () => ({ type: 'CLEAR_FORM'})
