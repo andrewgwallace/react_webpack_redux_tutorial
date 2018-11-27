@@ -21,5 +21,8 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html"
     })
-  ]
+  ],
+  entry: {
+    index: './src/index.js',
+  }
 };
