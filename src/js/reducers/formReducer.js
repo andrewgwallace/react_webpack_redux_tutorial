@@ -9,7 +9,6 @@ const addArticleFormReducer = (state = initialState.addArticleForm, action) => {
           return Object.assign({},state , {title: action.data.value})
       }
     case 'CLEAR_FORM':
-    console.log(":CEAR FORM ", initialState)
       return Object.assign({}, state, {title: ''})
     default:
       return state

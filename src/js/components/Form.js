@@ -26,7 +26,6 @@ const Form = (props) => {
     props.formActions.clearForm()
   }
 
-  console.log("REVERSE_LIST: ", reverseList)
   return (
     <div>
       <form onSubmit={handleSubmit}>
