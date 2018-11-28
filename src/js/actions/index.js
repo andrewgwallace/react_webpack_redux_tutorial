@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, UPDATE_FORM } from "../constants/action-types";
+import { ADD_ARTICLE, UPDATE_FORM, REVERSE_LIST } from "../constants/action-types";
 
 export const addArticle = formData => {
   console.log("FORM DATA ", formData)  
@@ -11,6 +11,10 @@ export const addArticle = formData => {
 export const updateForm = data => ({
   type: UPDATE_FORM,
   data,
+})
+
+export const reverseList = () => ({
+  type: REVERSE_LIST
 })
 
 

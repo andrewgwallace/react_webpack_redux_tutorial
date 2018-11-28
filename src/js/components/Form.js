@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import uuidv1 from "uuid";
 import * as formActions from "../actions/index";
+import { reverseList }  from "../actions/index";
 
 // reducer will take this data as the payload for the action
 // switch on the name of the input that was updated
@@ -25,7 +26,7 @@ const Form = (props) => {
     props.formActions.clearForm()
   }
 
-  console.log("PROPS: ", props)
+  console.log("REVERSE_LIST: ", reverseList)
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -43,12 +44,16 @@ const Form = (props) => {
             SAVE
           </button>
       </form>
+        <button className="btn btn-warning btn-lg reverse" onClick={props.reverseList}>
+            REVERSE
+        </button>
     </div>
   )
 }
 
 const mapDispatchToProps = dispatch => ({
-  formActions: bindActionCreators(formActions, dispatch)
+  formActions: bindActionCreators(formActions, dispatch),
+  reverseList: bindActionCreators(reverseList, dispatch)
 })
 
 const mapStateToProps = state => ({

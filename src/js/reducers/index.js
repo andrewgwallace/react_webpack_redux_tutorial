@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE, REVERSE_LIST } from "../constants/action-types";
 import initialState from './initialState';
 
 const articlesReducer = (state = initialState.articles, action) => {
@@ -6,12 +6,24 @@ const articlesReducer = (state = initialState.articles, action) => {
     case ADD_ARTICLE:
       console.log("PAYLOAD ", action.formData)
       return [...state, action.formData]
-      // return { ...state, [...state, action.payload] };
-     //  return Object.assign([], state, [state].push(action.formData))
-      // return Object.assign([], state, [...state].push(action.formData))
-      // return [...state].push(action.payload)
+    case REVERSE_LIST:
+    console.log("REVERSE LIST")
+    return Object.assign([], state, [...reverse(state)])
     default:
       return state;
   }
 };
+
+const reverse = (array) => {
+  let j = array.length - 1;
+  for (let i = 0; i < Math.floor(array.length/2); i++) {
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+    j--;
+  }
+  return array;
+}
+
+
 export default articlesReducer;
