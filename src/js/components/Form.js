@@ -1,4 +1,5 @@
 import React from "react";
+import Button from '@material-ui/core/Button';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import uuidv1 from "uuid";
@@ -39,13 +40,13 @@ const Form = (props) => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-success btn-lg">
+          <Button type="submit" variant="contained" color="primary">
             SAVE
-          </button>
+          </Button>
       </form>
-        <button className="btn btn-warning btn-lg reverse" onClick={props.reverseList}>
+        <Button variant="contained" color="secondary" onClick={props.reverseList}>
             REVERSE
-        </button>
+        </Button>
     </div>
   )
 }
