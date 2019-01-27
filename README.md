@@ -1,5 +1,5 @@
 #Part 1
-https://www.valentinog.com/blog/react-webpack-babel/
+[React, WebPack, & Babel](https://www.valentinog.com/blog/react-webpack-babel/)
 
 #Part 2
-https://www.valentinog.com/blog/react-redux-tutorial-beginners/
+[React & Redux](https://www.valentinog.com/blog/react-redux-tutorial-beginners/)
